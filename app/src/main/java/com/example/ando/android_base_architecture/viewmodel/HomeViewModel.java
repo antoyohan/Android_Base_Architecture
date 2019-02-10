@@ -6,6 +6,8 @@ import javax.inject.Inject;
 
 public class HomeViewModel extends ViewModel {
 
+    public String mText;
+
     @Inject
     HomeViewModel() {
 

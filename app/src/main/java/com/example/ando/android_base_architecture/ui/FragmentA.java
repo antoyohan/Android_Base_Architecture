@@ -3,6 +3,7 @@ package com.example.ando.android_base_architecture.ui;
 import android.arch.lifecycle.ViewModelProvider;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
+import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -11,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.ando.android_base_architecture.R;
+import com.example.ando.android_base_architecture.databinding.FragmentALayoutBinding;
 import com.example.ando.android_base_architecture.network.ApiService;
 import com.example.ando.android_base_architecture.viewmodel.HomeViewModel;
 
@@ -24,6 +26,7 @@ public class FragmentA extends Fragment {
     ApiService mApiService;
     @Inject
     ViewModelProvider.Factory mFactory;
+    private HomeViewModel mViewModel;
 
     public FragmentA() {
         // Required empty public constructor
@@ -38,15 +41,18 @@ public class FragmentA extends Fragment {
     }
 
     private void initComponents() {
-        HomeViewModel viewModel = ViewModelProviders.of(this, mFactory).get(HomeViewModel.class);
-        Log.d(TAG, "initComponents: viewMOdel " + viewModel);
+        mViewModel = ViewModelProviders.of(this, mFactory).get(HomeViewModel.class);
+        Log.d(TAG, "initComponents: viewMOdel " + mViewModel);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_a_layout, container, false);
+        FragmentALayoutBinding layoutBinding =
+                DataBindingUtil.inflate(getLayoutInflater(), R.layout.fragment_a_layout, container, false);
+        layoutBinding.setHomeViewModel(mViewModel);
+        return layoutBinding.getRoot();
     }
 
     @Override

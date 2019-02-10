@@ -1,5 +1,7 @@
 package com.example.ando.android_base_architecture.ui;
 
+import android.arch.lifecycle.ViewModelProvider;
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -10,16 +12,18 @@ import android.view.ViewGroup;
 
 import com.example.ando.android_base_architecture.R;
 import com.example.ando.android_base_architecture.network.ApiService;
+import com.example.ando.android_base_architecture.viewmodel.HomeViewModel;
 
 import javax.inject.Inject;
 
-import dagger.android.AndroidInjection;
 import dagger.android.support.AndroidSupportInjection;
 
 public class FragmentA extends Fragment {
     private static final String TAG = FragmentA.class.getSimpleName();
     @Inject
     ApiService mApiService;
+    @Inject
+    ViewModelProvider.Factory mFactory;
 
     public FragmentA() {
         // Required empty public constructor
@@ -30,6 +34,12 @@ public class FragmentA extends Fragment {
         super.onCreate(savedInstanceState);
         AndroidSupportInjection.inject(this);
         Log.d(TAG, "onCreate: apiservice " + mApiService);
+        initComponents();
+    }
+
+    private void initComponents() {
+        HomeViewModel viewModel = ViewModelProviders.of(this, mFactory).get(HomeViewModel.class);
+        Log.d(TAG, "initComponents: viewMOdel " + viewModel);
     }
 
     @Override

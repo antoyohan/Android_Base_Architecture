@@ -52,7 +52,12 @@ public class FragmentA extends Fragment {
         FragmentALayoutBinding layoutBinding =
                 DataBindingUtil.inflate(getLayoutInflater(), R.layout.fragment_a_layout, container, false);
         layoutBinding.setHomeViewModel(mViewModel);
+        initApiCall();
         return layoutBinding.getRoot();
+    }
+
+    private void initApiCall() {
+        mViewModel.getWeatherInfo();
     }
 
     @Override

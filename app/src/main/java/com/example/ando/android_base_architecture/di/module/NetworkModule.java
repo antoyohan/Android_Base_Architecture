@@ -7,6 +7,7 @@ import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import dagger.Module;
 import dagger.Provides;
 import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -19,8 +20,9 @@ public class NetworkModule {
     }
 
     @Provides
-    OkHttpClient provideHttpClient() {
-        return new OkHttpClient.Builder().build();
+    OkHttpClient provideHttpClient(HttpLoggingInterceptor interceptor) {
+        return new OkHttpClient.Builder().
+                addInterceptor(interceptor).build();
     }
 
     @Provides
@@ -28,7 +30,14 @@ public class NetworkModule {
         return new Retrofit.Builder()
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .baseUrl("https://www.google.com").build();
+                .client(httpClient)
+                .baseUrl("https://samples.openweathermap.org/").build();
+    }
+
+    @Provides
+    HttpLoggingInterceptor provideLoggingInterceptor() {
+        HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor();
+        return loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BASIC);
     }
 
     @Provides

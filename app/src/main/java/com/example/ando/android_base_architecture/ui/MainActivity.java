@@ -31,6 +31,8 @@ public class MainActivity extends AppCompatActivity implements HasSupportFragmen
     ApiService mApiService;
     @Inject
     FragmentA mFragmentA;
+    @Inject
+    Fragment_Recycler mFragmentRecycler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +48,7 @@ public class MainActivity extends AppCompatActivity implements HasSupportFragmen
 
     private void loadFragment() {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.add(R.id.fragment_container, mFragmentA);
+        transaction.add(R.id.fragment_container, mFragmentRecycler);
         transaction.commitNow();
     }
 

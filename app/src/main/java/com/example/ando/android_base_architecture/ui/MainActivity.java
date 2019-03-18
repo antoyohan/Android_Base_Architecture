@@ -1,12 +1,12 @@
 package com.example.ando.android_base_architecture.ui;
 
-import android.arch.lifecycle.LifecycleObserver;
 import android.arch.lifecycle.LifecycleOwner;
 import android.arch.lifecycle.LifecycleRegistry;
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
 
 import com.example.ando.android_base_architecture.PlayerView;
 import com.example.ando.android_base_architecture.R;
@@ -37,22 +37,28 @@ public class MainActivity extends AppCompatActivity implements HasSupportFragmen
         super.onCreate(savedInstanceState);
         AndroidInjection.inject(this);
         setContentView(R.layout.activity_main);
-        Log.d(TAG, "onCreate: apiService " + mApiService);
-        Log.d(TAG, "onCreate: fragment " + mFragmentA);
-        loadFragment();
         PlayerView mPlayerView =  new PlayerView();
         lifecycleRegistry.addObserver(mPlayerView);
-    }
-
-    private void loadFragment() {
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.add(R.id.fragment_container, mFragmentA);
-        transaction.commitNow();
+        Log.d(TAG, "onCreate: ");
     }
 
     @Override
     public AndroidInjector<android.support.v4.app.Fragment> supportFragmentInjector() {
         return fragmentDispatchingAndroidInjector;
+    }
+
+    public void onButtonClick(View view) {
+        Intent intent = new Intent(this, ActivityA.class);
+        startActivity(intent);
+    }
+
+    public void launchSameActivity(View view) {
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.d(TAG, "onDestroy: ");
     }
 }
 

@@ -2,6 +2,7 @@ package com.example.ando.android_base_architecture.ui;
 
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -15,6 +16,7 @@ import com.example.ando.android_base_architecture.R;
 import com.example.ando.android_base_architecture.databinding.FragmentListBinding;
 import com.example.ando.android_base_architecture.models.Employee;
 import com.example.ando.android_base_architecture.ui.adapters.ListRecyclerViewAdapter;
+import com.facebook.shimmer.ShimmerFrameLayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,6 +27,7 @@ public class Fragment_Recycler extends Fragment {
     private static String TAG = Fragment_Recycler.class.getSimpleName();
 
     private FragmentListBinding layoutBinding;
+    private ShimmerFrameLayout mShimmerViewContainer;
 
     @Inject
     public Fragment_Recycler() {
@@ -40,13 +43,16 @@ public class Fragment_Recycler extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         layoutBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_list, container, false);
         Log.d(TAG, "onCreateView: ");
-        initViews();
+        mShimmerViewContainer = layoutBinding.getRoot().findViewById(R.id.shimmer_view_container);
+
+        new Handler().postDelayed(this::initViews, 3000);
         return layoutBinding.getRoot();
     }
 
     @Override
     public void onResume() {
         super.onResume();
+        mShimmerViewContainer.startShimmerAnimation();
     }
 
     private void initViews() {
@@ -54,12 +60,23 @@ public class Fragment_Recycler extends Fragment {
         ListRecyclerViewAdapter adapter = new ListRecyclerViewAdapter(getEmloyeeList());
         layoutBinding.mainList.setLayoutManager(new LinearLayoutManager(this.getContext()));
         layoutBinding.mainList.setAdapter(adapter);
+        layoutBinding.mainList.setVisibility(View.VISIBLE);
+        mShimmerViewContainer.stopShimmerAnimation();
+        mShimmerViewContainer.setVisibility(View.GONE);
     }
 
     private List<Employee> getEmloyeeList() {
         List<Employee> employeeList = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
-            employeeList.add(new Employee("My Name", " Details"));
+            employeeList.add(new Employee("Anto yohan", "Employee Id : DO-754"));
+            employeeList.add(new Employee("Sarath KN", "Employee Id : DO-264"));
+            employeeList.add(new Employee("Sonal BK ", "Employee Id : DO-986"));
+            employeeList.add(new Employee("Raghavendra Kamath ", "Employee Id : DO-963"));
+            employeeList.add(new Employee("Sreeram k", "Employee Id : DO-988"));
+            employeeList.add(new Employee("Naveen Krishna", "Employee Id : DO-132"));
+            employeeList.add(new Employee("Shajeer Ahmed", "Employee Id : DO-96"));
+            employeeList.add(new Employee("Vinod Kumar", "Employee Id : DO-451"));
+            employeeList.add(new Employee("Akshay Bhat", "Employee Id : DO-852"));
         }
         return employeeList;
     }

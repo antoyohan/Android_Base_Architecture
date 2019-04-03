@@ -1,11 +1,13 @@
 package com.example.ando.android_base_architecture.ui;
 
-import android.arch.lifecycle.LifecycleObserver;
-import android.arch.lifecycle.LifecycleOwner;
-import android.arch.lifecycle.LifecycleRegistry;
+import androidx.lifecycle.LifecycleObserver;
+import androidx.lifecycle.LifecycleOwner;
+import androidx.lifecycle.LifecycleRegistry;
 import android.os.Bundle;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
+
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.appcompat.app.AppCompatActivity;
 import android.util.Log;
 
 import com.example.ando.android_base_architecture.PlayerView;
@@ -25,7 +27,7 @@ public class MainActivity extends AppCompatActivity implements HasSupportFragmen
     LifecycleRegistry lifecycleRegistry = new LifecycleRegistry(this);
 
     @Inject
-    DispatchingAndroidInjector<android.support.v4.app.Fragment> fragmentDispatchingAndroidInjector;
+    DispatchingAndroidInjector<Fragment> fragmentDispatchingAndroidInjector;
 
     @Inject
     ApiService mApiService;
@@ -53,7 +55,7 @@ public class MainActivity extends AppCompatActivity implements HasSupportFragmen
     }
 
     @Override
-    public AndroidInjector<android.support.v4.app.Fragment> supportFragmentInjector() {
+    public AndroidInjector<Fragment> supportFragmentInjector() {
         return fragmentDispatchingAndroidInjector;
     }
 }

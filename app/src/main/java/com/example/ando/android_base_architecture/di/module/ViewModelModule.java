@@ -1,7 +1,7 @@
 package com.example.ando.android_base_architecture.di.module;
 
-import android.arch.lifecycle.ViewModel;
-import android.arch.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModel;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.example.ando.android_base_architecture.di.AppViewModelFactory;
 import com.example.ando.android_base_architecture.di.ViewModelKey;

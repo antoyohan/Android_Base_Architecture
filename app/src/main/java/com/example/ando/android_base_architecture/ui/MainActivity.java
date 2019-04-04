@@ -12,32 +12,21 @@ import com.example.ando.android_base_architecture.PlayerView;
 import com.example.ando.android_base_architecture.R;
 import com.example.ando.android_base_architecture.network.ApiService;
 
-import javax.inject.Inject;
-
-import dagger.android.AndroidInjection;
-import dagger.android.AndroidInjector;
-import dagger.android.DispatchingAndroidInjector;
-import dagger.android.support.HasSupportFragmentInjector;
-
-public class MainActivity extends AppCompatActivity implements HasSupportFragmentInjector, LifecycleOwner {
+public class MainActivity extends AppCompatActivity implements LifecycleOwner {
 
     private static final String TAG = MainActivity.class.getSimpleName();
     LifecycleRegistry lifecycleRegistry = new LifecycleRegistry(this);
 
-    @Inject
-    DispatchingAndroidInjector<android.support.v4.app.Fragment> fragmentDispatchingAndroidInjector;
-
-    @Inject
     ApiService mApiService;
-    @Inject
+
     FragmentA mFragmentA;
-    @Inject
+
     Fragment_Recycler mFragmentRecycler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        AndroidInjection.inject(this);
+
         setContentView(R.layout.activity_main);
         Log.d(TAG, "onCreate: apiService " + mApiService);
         Log.d(TAG, "onCreate: fragment " + mFragmentA);
@@ -48,14 +37,11 @@ public class MainActivity extends AppCompatActivity implements HasSupportFragmen
 
     private void loadFragment() {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        mFragmentRecycler = new Fragment_Recycler();
         transaction.add(R.id.fragment_container, mFragmentRecycler);
         transaction.commitNow();
     }
 
-    @Override
-    public AndroidInjector<android.support.v4.app.Fragment> supportFragmentInjector() {
-        return fragmentDispatchingAndroidInjector;
-    }
 }
 
 

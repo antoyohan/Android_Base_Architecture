@@ -21,15 +21,12 @@ import com.facebook.shimmer.ShimmerFrameLayout;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.inject.Inject;
-
 public class Fragment_Recycler extends Fragment {
     private static String TAG = Fragment_Recycler.class.getSimpleName();
 
     private FragmentListBinding layoutBinding;
     private ShimmerFrameLayout mShimmerViewContainer;
 
-    @Inject
     public Fragment_Recycler() {
     }
 

@@ -16,15 +16,11 @@ import com.example.ando.android_base_architecture.databinding.FragmentALayoutBin
 import com.example.ando.android_base_architecture.network.ApiService;
 import com.example.ando.android_base_architecture.viewmodel.HomeViewModel;
 
-import javax.inject.Inject;
-
-import dagger.android.support.AndroidSupportInjection;
-
 public class FragmentA extends Fragment {
     private static final String TAG = FragmentA.class.getSimpleName();
-    @Inject
+
     ApiService mApiService;
-    @Inject
+
     ViewModelProvider.Factory mFactory;
     private HomeViewModel mViewModel;
 
@@ -35,7 +31,7 @@ public class FragmentA extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        AndroidSupportInjection.inject(this);
+
         Log.d(TAG, "onCreate: apiservice " + mApiService);
         initComponents();
     }

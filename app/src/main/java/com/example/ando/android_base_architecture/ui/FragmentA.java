@@ -1,16 +1,18 @@
 package com.example.ando.android_base_architecture.ui;
 
-import android.arch.lifecycle.ViewModelProvider;
-import android.arch.lifecycle.ViewModelProviders;
+import androidx.databinding.ViewDataBinding;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelProviders;
 import android.content.Context;
-import android.databinding.DataBindingUtil;
+import androidx.databinding.DataBindingUtil;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
+import androidx.fragment.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.ando.android_base_architecture.BR;
 import com.example.ando.android_base_architecture.R;
 import com.example.ando.android_base_architecture.databinding.FragmentALayoutBinding;
 import com.example.ando.android_base_architecture.network.ApiService;
@@ -45,9 +47,9 @@ public class FragmentA extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        FragmentALayoutBinding layoutBinding =
+        ViewDataBinding layoutBinding =
                 DataBindingUtil.inflate(getLayoutInflater(), R.layout.fragment_a_layout, container, false);
-        layoutBinding.setHomeViewModel(mViewModel);
+        layoutBinding.setVariable(BR.HomeViewModel, mViewModel);
         return layoutBinding.getRoot();
     }
 

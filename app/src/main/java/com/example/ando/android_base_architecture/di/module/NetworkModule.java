@@ -5,6 +5,7 @@ import com.google.gson.Gson;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 
 import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -12,25 +13,28 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class NetworkModule {
 
 
-    Gson providesGson() {
+    private static Gson providesGson() {
         return new Gson().newBuilder().create();
     }
 
 
-    OkHttpClient provideHttpClient() {
-        return new OkHttpClient.Builder().build();
+    private static OkHttpClient provideHttpClient() {
+        HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
+        logging.setLevel(HttpLoggingInterceptor.Level.BODY);
+        return new OkHttpClient.Builder().addInterceptor(logging).build();
     }
 
 
-    Retrofit provideRetrofit(Gson gson, OkHttpClient httpClient) {
+    private static Retrofit provideRetrofit(Gson gson, OkHttpClient httpClient) {
         return new Retrofit.Builder()
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .baseUrl("https://www.google.com").build();
+                .baseUrl("https://api.stackexchange.com/2.2/").build();
     }
 
 
-    ApiService provideApiService(Retrofit restClient) {
+    public static ApiService provideApiService() {
+        Retrofit restClient = provideRetrofit(providesGson(), provideHttpClient());
         return restClient.create(ApiService.class);
     }
 }

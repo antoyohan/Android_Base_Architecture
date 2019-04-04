@@ -1,15 +1,7 @@
 package com.example.ando.android_base_architecture.ui;
 
-import androidx.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.os.Handler;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.databinding.ViewDataBinding;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,13 +9,24 @@ import android.view.ViewGroup;
 
 import com.example.ando.android_base_architecture.R;
 import com.example.ando.android_base_architecture.models.Employee;
-import com.example.ando.android_base_architecture.ui.adapters.ListRecyclerViewAdapter;
+import com.example.ando.android_base_architecture.ui.adapters.RecyclerListAdapter;
+import com.example.ando.android_base_architecture.viewmodel.ItemViewModel;
 import com.facebook.shimmer.ShimmerFrameLayout;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Fragment_Recycler extends Fragment {
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.databinding.DataBindingUtil;
+import androidx.databinding.ViewDataBinding;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.LifecycleOwner;
+import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+public class Fragment_Recycler extends Fragment implements LifecycleOwner {
     private static String TAG = Fragment_Recycler.class.getSimpleName();
 
     private ViewDataBinding layoutBinding;
@@ -45,22 +48,33 @@ public class Fragment_Recycler extends Fragment {
         Log.d(TAG, "onCreateView: ");
         mShimmerViewContainer = layoutBinding.getRoot().findViewById(R.id.shimmer_view_container);
         mRecyclerView = layoutBinding.getRoot().findViewById(R.id.main_list);
-        new Handler().postDelayed(this::initViews, 3000);
+        initViews();
         return layoutBinding.getRoot();
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        mShimmerViewContainer.startShimmerAnimation();
+        //mShimmerViewContainer.startShimmerAnimation();
     }
 
     private void initViews() {
         Log.d(TAG, "initViews:");
-        ListRecyclerViewAdapter adapter = new ListRecyclerViewAdapter(getEmloyeeList());
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
+
+        ItemViewModel itemViewModel = ViewModelProviders.of(this).get(ItemViewModel.class);
+        RecyclerListAdapter adapter = new RecyclerListAdapter();
+
+        itemViewModel.itemPagedList.observe(this, pagedList -> {
+            Log.d(TAG, "observe called " + pagedList.size());
+            adapter.submitList(pagedList);
+        });
         mRecyclerView.setAdapter(adapter);
-        mRecyclerView.setVisibility(View.VISIBLE);
+
+        stopShimmerAnimation();
+    }
+
+    private void stopShimmerAnimation() {
         mShimmerViewContainer.stopShimmerAnimation();
         mShimmerViewContainer.setVisibility(View.GONE);
     }

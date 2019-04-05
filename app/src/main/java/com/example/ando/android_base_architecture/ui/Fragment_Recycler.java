@@ -1,5 +1,9 @@
 package com.example.ando.android_base_architecture.ui;
 
+import android.arch.lifecycle.LiveData;
+import android.arch.lifecycle.Observer;
+import android.arch.paging.LivePagedListBuilder;
+import android.arch.paging.PagedList;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.os.Handler;
@@ -14,12 +18,11 @@ import android.view.ViewGroup;
 
 import com.example.ando.android_base_architecture.R;
 import com.example.ando.android_base_architecture.databinding.FragmentListBinding;
-import com.example.ando.android_base_architecture.models.Employee;
+import com.example.ando.android_base_architecture.repository.DataSourceFactory;
+import com.example.ando.android_base_architecture.ui.adapters.DynamicRecycleViewAdapter;
 import com.example.ando.android_base_architecture.ui.adapters.ListRecyclerViewAdapter;
+import com.example.ando.android_base_architecture.ui.recycler_view.view_item.BaseViewItem;
 import com.facebook.shimmer.ShimmerFrameLayout;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.inject.Inject;
 
@@ -57,27 +60,30 @@ public class Fragment_Recycler extends Fragment {
 
     private void initViews() {
         Log.d(TAG, "initViews:");
-        ListRecyclerViewAdapter adapter = new ListRecyclerViewAdapter(getEmloyeeList());
+        DynamicRecycleViewAdapter adapter = new DynamicRecycleViewAdapter();
         layoutBinding.mainList.setLayoutManager(new LinearLayoutManager(this.getContext()));
         layoutBinding.mainList.setAdapter(adapter);
         layoutBinding.mainList.setVisibility(View.VISIBLE);
         mShimmerViewContainer.stopShimmerAnimation();
         mShimmerViewContainer.setVisibility(View.GONE);
+        initDataSource(adapter);
     }
 
-    private List<Employee> getEmloyeeList() {
-        List<Employee> employeeList = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
-            employeeList.add(new Employee("Anto yohan", "Employee Id : DO-754"));
-            employeeList.add(new Employee("Sarath KN", "Employee Id : DO-264"));
-            employeeList.add(new Employee("Sonal BK ", "Employee Id : DO-986"));
-            employeeList.add(new Employee("Raghavendra Kamath ", "Employee Id : DO-963"));
-            employeeList.add(new Employee("Sreeram k", "Employee Id : DO-988"));
-            employeeList.add(new Employee("Naveen Krishna", "Employee Id : DO-132"));
-            employeeList.add(new Employee("Shajeer Ahmed", "Employee Id : DO-96"));
-            employeeList.add(new Employee("Vinod Kumar", "Employee Id : DO-451"));
-            employeeList.add(new Employee("Akshay Bhat", "Employee Id : DO-852"));
-        }
-        return employeeList;
+    private void initDataSource(DynamicRecycleViewAdapter adapter) {
+        DataSourceFactory itemDataSourceFactory = new DataSourceFactory();
+
+        PagedList.Config config =
+                (new PagedList.Config.Builder())
+                        .setEnablePlaceholders(false)
+                        .setPageSize(10)
+                        .build();
+
+        LiveData<PagedList<BaseViewItem>> itemPagedList = (new LivePagedListBuilder(itemDataSourceFactory, config)).build();
+        itemPagedList.observe(this, new Observer<PagedList<BaseViewItem>>() {
+            @Override
+            public void onChanged(@Nullable PagedList<BaseViewItem> baseViewItems) {
+              adapter.submitList(baseViewItems);
+            }
+        });
     }
 }

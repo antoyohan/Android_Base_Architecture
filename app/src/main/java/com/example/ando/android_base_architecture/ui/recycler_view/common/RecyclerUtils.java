@@ -28,6 +28,11 @@ public class RecyclerUtils {
                         inflate(MovieViewHolder.getLayout(), viewGroup, false), MOVIE_ITEM);
                 break;
 
+            default:
+                viewHolder = new MovieViewHolder(LayoutInflater.from(viewGroup.getContext()).
+                        inflate(EmptyViewHolder.getLayout(), viewGroup, false), EMPTY_VIEW);
+                break;
+
         }
         return viewHolder;
     }

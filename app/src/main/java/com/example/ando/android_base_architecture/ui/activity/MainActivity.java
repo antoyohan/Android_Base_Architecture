@@ -1,6 +1,5 @@
-package com.example.ando.android_base_architecture.ui;
+package com.example.ando.android_base_architecture.ui.activity;
 
-import android.arch.lifecycle.LifecycleObserver;
 import android.arch.lifecycle.LifecycleOwner;
 import android.arch.lifecycle.LifecycleRegistry;
 import android.os.Bundle;
@@ -11,6 +10,8 @@ import android.util.Log;
 import com.example.ando.android_base_architecture.PlayerView;
 import com.example.ando.android_base_architecture.R;
 import com.example.ando.android_base_architecture.network.ApiService;
+import com.example.ando.android_base_architecture.ui.FragmentA;
+import com.example.ando.android_base_architecture.ui.Fragment_Recycler;
 
 import javax.inject.Inject;
 

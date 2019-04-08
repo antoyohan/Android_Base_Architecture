@@ -2,13 +2,12 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginTop="8dp">
+    android:padding="@dimen/standard_tray_padding">
 
     <View
         android:id="@+id/thumbnail"
         android:layout_width="@dimen/placeholderImage"
         android:layout_height="@dimen/placeholderImage"
-        android:layout_marginStart="8dp"
         android:background="@color/background" />
 
     <LinearLayout

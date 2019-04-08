@@ -3,14 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="8dp">
+    android:paddingTop="@dimen/standard_tray_padding"
+    android:paddingBottom="@dimen/standard_tray_padding">
 
     <ImageView
         android:id="@+id/image_view"
         android:layout_width="@dimen/placeholderImage"
         android:layout_height="@dimen/placeholderImage"
-        android:layout_marginStart="8dp"
-        android:layout_marginBottom="8dp"
         android:src="@drawable/profile_sample"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"

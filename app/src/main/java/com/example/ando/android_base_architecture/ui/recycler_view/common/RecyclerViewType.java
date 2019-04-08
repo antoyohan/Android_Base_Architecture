@@ -5,4 +5,5 @@ public interface RecyclerViewType {
     int LINEAR_TRAY = 1;
     int EMPLOYEE_ITEM = 2;
     int MOVIE_ITEM = 3;
+    int MOVIE_POSTER_TYPE_1 = 4;
 }

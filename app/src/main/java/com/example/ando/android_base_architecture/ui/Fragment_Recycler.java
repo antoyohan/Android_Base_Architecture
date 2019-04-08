@@ -64,9 +64,12 @@ public class Fragment_Recycler extends Fragment {
         layoutBinding.mainList.setLayoutManager(new LinearLayoutManager(this.getContext()));
         layoutBinding.mainList.setAdapter(adapter);
         layoutBinding.mainList.setVisibility(View.VISIBLE);
+        initDataSource(adapter);
+    }
+
+    private void hideShimmerEffect() {
         mShimmerViewContainer.stopShimmerAnimation();
         mShimmerViewContainer.setVisibility(View.GONE);
-        initDataSource(adapter);
     }
 
     private void initDataSource(DynamicRecycleViewAdapter adapter) {
@@ -83,6 +86,7 @@ public class Fragment_Recycler extends Fragment {
             @Override
             public void onChanged(@Nullable PagedList<BaseViewItem> baseViewItems) {
               adapter.submitList(baseViewItems);
+                hideShimmerEffect();
             }
         });
     }

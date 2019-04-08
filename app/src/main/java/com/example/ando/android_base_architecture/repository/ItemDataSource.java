@@ -30,7 +30,7 @@ public class ItemDataSource extends PageKeyedDataSource<Integer, BaseViewItem> {
         List<Employee> employeeList = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
             employeeList.add(new Employee("Anto yohan", "Employee Id : DO-754", RecyclerViewType.EMPLOYEE_ITEM));
-            employeeList.add(new Employee("Sarath KN", "Employee Id : DO-264", RecyclerViewType.EMPLOYEE_ITEM));
+            employeeList.add(new Employee("Sarath KN", "Employee Id : DO-264", RecyclerViewType.LINEAR_TRAY));
             employeeList.add(new Employee("Sonal BK ", "Employee Id : DO-986", RecyclerViewType.MOVIE_ITEM));
             employeeList.add(new Employee("Raghavendra Kamath ", "Employee Id : DO-963", RecyclerViewType.EMPLOYEE_ITEM));
             employeeList.add(new Employee("Sreeram k", "Employee Id : DO-988", RecyclerViewType.MOVIE_ITEM));

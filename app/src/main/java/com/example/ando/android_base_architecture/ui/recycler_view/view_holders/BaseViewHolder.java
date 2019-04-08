@@ -23,7 +23,7 @@ public abstract class BaseViewHolder extends RecyclerView.ViewHolder {
     }
 
     /**
-     * Override this method to provide the layout
+     * Write this method in childto provide the layout
      */
     protected static int getLayout() {
         return -1;

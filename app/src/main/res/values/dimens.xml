@@ -7,4 +7,7 @@
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="linear_recycler_padding">8dp</dimen>
     <dimen name="standard_tray_padding">8dp</dimen>
+    <dimen name="tray_title_text">16dp</dimen>
+    <dimen name="title_top_padding">10dp</dimen>
+    <dimen name="divider_top_padding">20dp</dimen>
 </resources>

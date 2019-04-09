@@ -3,14 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingTop="@dimen/standard_tray_padding"
-    android:paddingBottom="@dimen/standard_tray_padding">
+    android:padding="@dimen/standard_tray_padding"
+    android:background="@drawable/rectangle_border_orange">
 
     <ImageView
         android:id="@+id/image_view"
         android:layout_width="@dimen/placeholderImage"
         android:layout_height="@dimen/placeholderImage"
-        android:src="@drawable/profile_sample"
+        android:src="@drawable/actor_profile_sample"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -22,6 +22,7 @@
         android:layout_marginStart="8dp"
         android:textColor="@color/black"
         android:textSize="15dp"
+        android:text="Robert Downey Jr."
         app:layout_constraintStart_toEndOf="@id/image_view"
         app:layout_constraintTop_toTopOf="parent" />
 

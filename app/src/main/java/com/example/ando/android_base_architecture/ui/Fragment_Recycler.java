@@ -20,7 +20,7 @@ import com.example.ando.android_base_architecture.R;
 import com.example.ando.android_base_architecture.databinding.FragmentListBinding;
 import com.example.ando.android_base_architecture.repository.DataSourceFactory;
 import com.example.ando.android_base_architecture.ui.adapters.DynamicRecycleViewAdapter;
-import com.example.ando.android_base_architecture.ui.adapters.ListRecyclerViewAdapter;
+import com.example.ando.android_base_architecture.ui.recycler_view.common.VerticalSpaceItemDecoration;
 import com.example.ando.android_base_architecture.ui.recycler_view.view_item.BaseViewItem;
 import com.facebook.shimmer.ShimmerFrameLayout;
 
@@ -62,6 +62,8 @@ public class Fragment_Recycler extends Fragment {
         Log.d(TAG, "initViews:");
         DynamicRecycleViewAdapter adapter = new DynamicRecycleViewAdapter();
         layoutBinding.mainList.setLayoutManager(new LinearLayoutManager(this.getContext()));
+        VerticalSpaceItemDecoration itemDecoration = new VerticalSpaceItemDecoration(8);
+        layoutBinding.mainList.addItemDecoration(itemDecoration);
         layoutBinding.mainList.setAdapter(adapter);
         layoutBinding.mainList.setVisibility(View.VISIBLE);
         initDataSource(adapter);
@@ -73,7 +75,7 @@ public class Fragment_Recycler extends Fragment {
     }
 
     private void initDataSource(DynamicRecycleViewAdapter adapter) {
-        DataSourceFactory itemDataSourceFactory = new DataSourceFactory();
+        DataSourceFactory itemDataSourceFactory = new DataSourceFactory(this.getContext());
 
         PagedList.Config config =
                 (new PagedList.Config.Builder())
@@ -85,7 +87,7 @@ public class Fragment_Recycler extends Fragment {
         itemPagedList.observe(this, new Observer<PagedList<BaseViewItem>>() {
             @Override
             public void onChanged(@Nullable PagedList<BaseViewItem> baseViewItems) {
-              adapter.submitList(baseViewItems);
+                adapter.submitList(baseViewItems);
                 hideShimmerEffect();
             }
         });

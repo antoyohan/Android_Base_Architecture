@@ -1,10 +1,10 @@
 package com.example.ando.android_base_architecture.ui.recycler_view.view_holders;
 
 import android.support.annotation.NonNull;
-import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.TextView;
 
 import com.example.ando.android_base_architecture.R;
 import com.example.ando.android_base_architecture.models.Employee;
@@ -17,11 +17,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LinearTrayViewHolder extends BaseViewHolder {
+    private final TextView mTitleView;
     private RecyclerView mHorizontalRecyclerView;
 
     public LinearTrayViewHolder(@NonNull View itemView, int type) {
         super(itemView, type);
         mHorizontalRecyclerView = itemView.findViewById(R.id.linear_tray_list);
+        mTitleView = itemView.findViewById(R.id.tray_title);
     }
 
     public static int getLayout() {
@@ -31,9 +33,10 @@ public class LinearTrayViewHolder extends BaseViewHolder {
     @Override
     public void setData(BaseViewItem item) {
         // add a divider after each item for more clarity
+        mTitleView.setText(item.getTitle());
         HorizontalSpaceItemDecoration dividerItemDecoration = new HorizontalSpaceItemDecoration(10);
         mHorizontalRecyclerView.addItemDecoration(dividerItemDecoration);
-        ListRecyclerViewAdapter adapter = new ListRecyclerViewAdapter(getEmloyeeList());
+        ListRecyclerViewAdapter adapter = new ListRecyclerViewAdapter(item.getItems());
         LinearLayoutManager horizontalLayoutManager = new LinearLayoutManager(mHorizontalRecyclerView.getContext(), LinearLayoutManager.HORIZONTAL, false);
         mHorizontalRecyclerView.setLayoutManager(horizontalLayoutManager);
         mHorizontalRecyclerView.setAdapter(adapter);

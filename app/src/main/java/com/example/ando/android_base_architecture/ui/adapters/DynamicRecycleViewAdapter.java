@@ -20,12 +20,14 @@ public class DynamicRecycleViewAdapter extends PagedListAdapter<BaseViewItem, Ba
     @NonNull
     @Override
     public BaseViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int type) {
-        Log.d(TAG, "onCreateViewHolder() called with:  type = [" + type + "]");
-        return RecyclerUtils.getViewHolder(type, viewGroup);
+        BaseViewHolder baseViewHolder = RecyclerUtils.getViewHolder(type, viewGroup);
+        Log.d(TAG, "onCreateViewHolder: " + baseViewHolder.getClass().getSimpleName());
+        return baseViewHolder;
     }
 
     @Override
     public void onBindViewHolder(@NonNull BaseViewHolder baseViewHolder, int position) {
+        Log.d(TAG, "onBindViewHolder: " + baseViewHolder.getClass().getSimpleName());
         baseViewHolder.setData(getItem(position));
     }
 

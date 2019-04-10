@@ -33,6 +33,7 @@ public class DynamicRecycleViewAdapter extends PagedListAdapter<BaseViewItem, Ba
 
     @Override
     public int getItemViewType(int position) {
+        Log.d(TAG, "getItemViewType: position " + position);
         return getItem(position).getViewType();
     }
 

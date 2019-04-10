@@ -17,6 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.ando.android_base_architecture.R;
+import com.example.ando.android_base_architecture.common.Constants;
 import com.example.ando.android_base_architecture.databinding.FragmentListBinding;
 import com.example.ando.android_base_architecture.repository.DataSourceFactory;
 import com.example.ando.android_base_architecture.ui.adapters.DynamicRecycleViewAdapter;
@@ -31,6 +32,7 @@ public class Fragment_Recycler extends Fragment {
 
     private FragmentListBinding layoutBinding;
     private ShimmerFrameLayout mShimmerViewContainer;
+    private int mFragmentType;
 
     @Inject
     public Fragment_Recycler() {
@@ -39,6 +41,10 @@ public class Fragment_Recycler extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Bundle data = getArguments();
+        if (data != null) {
+            mFragmentType = data.getInt(Constants.FRAGMENT_TYPE);
+        }
     }
 
     @Nullable
@@ -75,7 +81,7 @@ public class Fragment_Recycler extends Fragment {
     }
 
     private void initDataSource(DynamicRecycleViewAdapter adapter) {
-        DataSourceFactory itemDataSourceFactory = new DataSourceFactory(this.getContext());
+        DataSourceFactory itemDataSourceFactory = new DataSourceFactory(this.getContext(), mFragmentType);
 
         PagedList.Config config =
                 (new PagedList.Config.Builder())
@@ -84,12 +90,9 @@ public class Fragment_Recycler extends Fragment {
                         .build();
 
         LiveData<PagedList<BaseViewItem>> itemPagedList = (new LivePagedListBuilder(itemDataSourceFactory, config)).build();
-        itemPagedList.observe(this, new Observer<PagedList<BaseViewItem>>() {
-            @Override
-            public void onChanged(@Nullable PagedList<BaseViewItem> baseViewItems) {
-                adapter.submitList(baseViewItems);
-                hideShimmerEffect();
-            }
+        itemPagedList.observe(this, baseViewItems -> {
+            adapter.submitList(baseViewItems);
+            hideShimmerEffect();
         });
     }
 }

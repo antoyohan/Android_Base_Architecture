@@ -36,6 +36,7 @@ public class HomeTabbedActivity extends AppCompatActivity
         AndroidInjection.inject(this);
         setContentView(R.layout.activity_home_tabbed);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle("Home");
         setSupportActionBar(toolbar);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

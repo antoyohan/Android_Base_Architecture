@@ -5,6 +5,7 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
+import com.example.ando.android_base_architecture.common.Constants;
 import com.example.ando.android_base_architecture.models.BaseResponse;
 import com.example.ando.android_base_architecture.models.Employee;
 import com.example.ando.android_base_architecture.ui.recycler_view.common.RecyclerViewType;
@@ -19,9 +20,11 @@ import java.util.List;
 public class ItemDataSource extends PageKeyedDataSource<Integer, BaseViewItem> {
     private static final String TAG = ItemDataSource.class.getSimpleName();
     private final Context mContext;
+    private final int mFragmentType;
 
-    public ItemDataSource(Context context) {
+    public ItemDataSource(Context context, int fragmentType) {
         mContext = context;
+        mFragmentType = fragmentType;
     }
 
     @Override
@@ -58,7 +61,7 @@ public class ItemDataSource extends PageKeyedDataSource<Integer, BaseViewItem> {
     private List<BaseViewItem> readJsonFromAssets() {
         List<BaseViewItem> convertedList = new ArrayList<>();
         try {
-            InputStream is = mContext.getAssets().open("HomeResponse.json");
+            InputStream is = mContext.getAssets().open(getAssetFileName());
             int size = is.available();
             byte[] buffer = new byte[size];
             is.read(buffer);
@@ -71,5 +74,23 @@ public class ItemDataSource extends PageKeyedDataSource<Integer, BaseViewItem> {
             ex.printStackTrace();
         }
         return convertedList;
+    }
+
+    private String getAssetFileName() {
+        String filename;
+        switch (mFragmentType) {
+            case Constants.TV_SHOW_PAGE:
+                filename = "TVShowResponse.json";
+                break;
+            case Constants.LIVE_PAGE:
+                filename = "LiveResponse.json";
+                break;
+            case Constants.HOME_PAGE:
+            default:
+                filename = "HomeResponse.json";
+                break;
+        }
+        Log.d(TAG, "getAssetFileName: " + filename);
+        return filename;
     }
 }

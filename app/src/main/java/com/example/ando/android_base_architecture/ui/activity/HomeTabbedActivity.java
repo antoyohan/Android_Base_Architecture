@@ -1,5 +1,6 @@
 package com.example.ando.android_base_architecture.ui.activity;
 
+import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
@@ -14,6 +15,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.example.ando.android_base_architecture.R;
+import com.example.ando.android_base_architecture.databinding.ActivityHomeTabbedBinding;
 import com.example.ando.android_base_architecture.ui.adapters.HomePagerAdapter;
 
 import javax.inject.Inject;
@@ -27,6 +29,7 @@ public class HomeTabbedActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, HasSupportFragmentInjector {
 
     private static final String TAG = HomeTabbedActivity.class.getSimpleName();
+    private ActivityHomeTabbedBinding mBinding;
     @Inject
     public DispatchingAndroidInjector<Fragment> mSupportInjector;
 
@@ -34,34 +37,33 @@ public class HomeTabbedActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         AndroidInjection.inject(this);
-        setContentView(R.layout.activity_home_tabbed);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle("Home");
-        setSupportActionBar(toolbar);
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.addDrawerListener(toggle);
-        toggle.syncState();
-
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
+        mBinding = DataBindingUtil.setContentView(this, R.layout.activity_home_tabbed);
+        initViews();
         initPager();
     }
 
-    private void initPager() {
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+    private void initViews() {
+        Toolbar toolbar = mBinding.getRoot().findViewById(R.id.toolbar);
+        toolbar.setTitle("Home");
         setSupportActionBar(toolbar);
 
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, mBinding.drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        mBinding.drawerLayout.addDrawerListener(toggle);
+        toggle.syncState();
+
+        mBinding.navView.setNavigationItemSelectedListener(this);
+    }
+
+    private void initPager() {
+        TabLayout tabLayout = mBinding.getRoot().findViewById(R.id.tab_layout);
         tabLayout.addTab(tabLayout.newTab().setText("Movies"));
         tabLayout.addTab(tabLayout.newTab().setText("TV Shows"));
         tabLayout.addTab(tabLayout.newTab().setText("Live"));
 
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
-        final ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
+        final ViewPager viewPager = mBinding.getRoot().findViewById(R.id.pager);
         final HomePagerAdapter adapter = new HomePagerAdapter
                 (getSupportFragmentManager(), tabLayout.getTabCount());
         viewPager.setAdapter(adapter);
@@ -86,7 +88,7 @@ public class HomeTabbedActivity extends AppCompatActivity
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = mBinding.drawerLayout;
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
@@ -136,7 +138,7 @@ public class HomeTabbedActivity extends AppCompatActivity
 
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = mBinding.drawerLayout;
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }

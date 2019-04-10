@@ -52,8 +52,7 @@ public class Fragment_Recycler extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         layoutBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_list, container, false);
         Log.d(TAG, "onCreateView: ");
-        mShimmerViewContainer = layoutBinding.getRoot().findViewById(R.id.shimmer_view_container);
-
+        mShimmerViewContainer = layoutBinding.shimmerViewContainer;
         new Handler().postDelayed(this::initViews, 3000);
         return layoutBinding.getRoot();
     }

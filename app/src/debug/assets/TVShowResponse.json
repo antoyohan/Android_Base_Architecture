@@ -147,7 +147,7 @@
       ]
     },
     {
-      "title": "Recommended",
+      "title": "Popular Shows",
       "layout_type": 1,
       "subtitle": 1554729669,
       "answer_id": 55574473,
@@ -173,7 +173,7 @@
             "link": "https://stackoverflow.com/users/2088135/tom-fenech"
           },
           "title": "true",
-          "layout_type": 4,
+          "layout_type": 7,
           "subtitle": 1554729669,
           "answer_id": 55574473,
           "question_id": 55570761
@@ -189,7 +189,7 @@
             "link": "https://stackoverflow.com/users/2088135/tom-fenech"
           },
           "title": "true",
-          "layout_type": 4,
+          "layout_type": 7,
           "subtitle": 1554729669,
           "answer_id": 55574473,
           "question_id": 55570761
@@ -205,7 +205,7 @@
             "link": "https://stackoverflow.com/users/2088135/tom-fenech"
           },
           "title": "true",
-          "layout_type": 4,
+          "layout_type": 7,
           "subtitle": 1554729669,
           "answer_id": 55574473,
           "question_id": 55570761
@@ -221,7 +221,7 @@
             "link": "https://stackoverflow.com/users/2088135/tom-fenech"
           },
           "title": "true",
-          "layout_type": 4,
+          "layout_type": 7,
           "subtitle": 1554729669,
           "answer_id": 55574473,
           "question_id": 55570761
@@ -237,7 +237,7 @@
             "link": "https://stackoverflow.com/users/2088135/tom-fenech"
           },
           "title": "true",
-          "layout_type": 4,
+          "layout_type": 7,
           "subtitle": 1554729669,
           "answer_id": 55574473,
           "question_id": 55570761
@@ -253,7 +253,7 @@
             "link": "https://stackoverflow.com/users/2088135/tom-fenech"
           },
           "title": "true",
-          "layout_type": 4,
+          "layout_type": 7,
           "subtitle": 1554729669,
           "answer_id": 55574473,
           "question_id": 55570761
@@ -269,7 +269,7 @@
             "link": "https://stackoverflow.com/users/2088135/tom-fenech"
           },
           "title": "true",
-          "layout_type": 4,
+          "layout_type": 7,
           "subtitle": 1554729669,
           "answer_id": 55574473,
           "question_id": 55570761
@@ -285,7 +285,153 @@
             "link": "https://stackoverflow.com/users/2088135/tom-fenech"
           },
           "title": "true",
-          "layout_type": 4,
+          "layout_type": 7,
+          "subtitle": 1554729669,
+          "answer_id": 55574473,
+          "question_id": 55570761
+        }
+      ]
+    },
+    {
+      "title": "Latest Episodes",
+      "layout_type": 1,
+      "subtitle": 1554729669,
+      "answer_id": 55574473,
+      "question_id": 55570761,
+      "data": {
+        "reputation": 55159,
+        "user_id": 2088135,
+        "user_type": "registered",
+        "accept_rate": 93,
+        "profile_image": "https://i.stack.imgur.com/YB10Q.jpg?s=128&g=1",
+        "display_name": "Tom Fenech",
+        "link": "https://stackoverflow.com/users/2088135/tom-fenech"
+      },
+      "items": [
+        {
+          "data": {
+            "reputation": 55159,
+            "user_id": 2088135,
+            "user_type": "registered",
+            "accept_rate": 93,
+            "profile_image": "https://i.stack.imgur.com/YB10Q.jpg?s=128&g=1",
+            "display_name": "Tom Fenech",
+            "link": "https://stackoverflow.com/users/2088135/tom-fenech"
+          },
+          "title": "true",
+          "layout_type": 6,
+          "subtitle": 1554729669,
+          "answer_id": 55574473,
+          "question_id": 55570761
+        },
+        {
+          "data": {
+            "reputation": 55159,
+            "user_id": 2088135,
+            "user_type": "registered",
+            "accept_rate": 93,
+            "profile_image": "https://i.stack.imgur.com/YB10Q.jpg?s=128&g=1",
+            "display_name": "Tom Fenech",
+            "link": "https://stackoverflow.com/users/2088135/tom-fenech"
+          },
+          "title": "true",
+          "layout_type": 6,
+          "subtitle": 1554729669,
+          "answer_id": 55574473,
+          "question_id": 55570761
+        },
+        {
+          "data": {
+            "reputation": 55159,
+            "user_id": 2088135,
+            "user_type": "registered",
+            "accept_rate": 93,
+            "profile_image": "https://i.stack.imgur.com/YB10Q.jpg?s=128&g=1",
+            "display_name": "Tom Fenech",
+            "link": "https://stackoverflow.com/users/2088135/tom-fenech"
+          },
+          "title": "true",
+          "layout_type": 6,
+          "subtitle": 1554729669,
+          "answer_id": 55574473,
+          "question_id": 55570761
+        },
+        {
+          "data": {
+            "reputation": 55159,
+            "user_id": 2088135,
+            "user_type": "registered",
+            "accept_rate": 93,
+            "profile_image": "https://i.stack.imgur.com/YB10Q.jpg?s=128&g=1",
+            "display_name": "Tom Fenech",
+            "link": "https://stackoverflow.com/users/2088135/tom-fenech"
+          },
+          "title": "true",
+          "layout_type": 6,
+          "subtitle": 1554729669,
+          "answer_id": 55574473,
+          "question_id": 55570761
+        },
+        {
+          "data": {
+            "reputation": 55159,
+            "user_id": 2088135,
+            "user_type": "registered",
+            "accept_rate": 93,
+            "profile_image": "https://i.stack.imgur.com/YB10Q.jpg?s=128&g=1",
+            "display_name": "Tom Fenech",
+            "link": "https://stackoverflow.com/users/2088135/tom-fenech"
+          },
+          "title": "true",
+          "layout_type": 6,
+          "subtitle": 1554729669,
+          "answer_id": 55574473,
+          "question_id": 55570761
+        },
+        {
+          "data": {
+            "reputation": 55159,
+            "user_id": 2088135,
+            "user_type": "registered",
+            "accept_rate": 93,
+            "profile_image": "https://i.stack.imgur.com/YB10Q.jpg?s=128&g=1",
+            "display_name": "Tom Fenech",
+            "link": "https://stackoverflow.com/users/2088135/tom-fenech"
+          },
+          "title": "true",
+          "layout_type": 6,
+          "subtitle": 1554729669,
+          "answer_id": 55574473,
+          "question_id": 55570761
+        },
+        {
+          "data": {
+            "reputation": 55159,
+            "user_id": 2088135,
+            "user_type": "registered",
+            "accept_rate": 93,
+            "profile_image": "https://i.stack.imgur.com/YB10Q.jpg?s=128&g=1",
+            "display_name": "Tom Fenech",
+            "link": "https://stackoverflow.com/users/2088135/tom-fenech"
+          },
+          "title": "true",
+          "layout_type": 6,
+          "subtitle": 1554729669,
+          "answer_id": 55574473,
+          "question_id": 55570761
+        },
+        {
+          "data": {
+            "reputation": 55159,
+            "user_id": 2088135,
+            "user_type": "registered",
+            "accept_rate": 93,
+            "profile_image": "https://i.stack.imgur.com/YB10Q.jpg?s=128&g=1",
+            "display_name": "Tom Fenech",
+            "link": "https://stackoverflow.com/users/2088135/tom-fenech"
+          },
+          "title": "true",
+          "layout_type": 6,
           "subtitle": 1554729669,
           "answer_id": 55574473,
           "question_id": 55570761
@@ -986,22 +1132,6 @@
       },
       "title": "true",
       "layout_type": 2,
-      "subtitle": 1554729669
-    },
-    {
-      "answer_id": 55574473,
-      "question_id": 55570761,
-      "data": {
-        "reputation": 55159,
-        "user_id": 2088135,
-        "user_type": "registered",
-        "accept_rate": 93,
-        "profile_image": "https://i.stack.imgur.com/YB10Q.jpg?s=128&g=1",
-        "display_name": "Tom Fenech",
-        "link": "https://stackoverflow.com/users/2088135/tom-fenech"
-      },
-      "title": "true",
-      "layout_type": 3,
       "subtitle": 1554729669
     },
     {

@@ -3,20 +3,24 @@ package com.example.ando.android_base_architecture.ui.recycler_view.common;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
+import com.example.ando.android_base_architecture.ui.recycler_view.view_holders.ActorTileViewHolder;
 import com.example.ando.android_base_architecture.ui.recycler_view.view_holders.BaseViewHolder;
 import com.example.ando.android_base_architecture.ui.recycler_view.view_holders.CarouselViewHolder;
 import com.example.ando.android_base_architecture.ui.recycler_view.view_holders.EmoticonViewHolder;
-import com.example.ando.android_base_architecture.ui.recycler_view.view_holders.ActorTileViewHolder;
 import com.example.ando.android_base_architecture.ui.recycler_view.view_holders.EmptyViewHolder;
+import com.example.ando.android_base_architecture.ui.recycler_view.view_holders.EpisodeViewHolder;
 import com.example.ando.android_base_architecture.ui.recycler_view.view_holders.LinearTrayViewHolder;
 import com.example.ando.android_base_architecture.ui.recycler_view.view_holders.MoviePoster_Type1_Holder;
+import com.example.ando.android_base_architecture.ui.recycler_view.view_holders.ShowViewHolder;
 
-import static com.example.ando.android_base_architecture.ui.recycler_view.common.RecyclerViewType.EMOTICON_ITEM;
 import static com.example.ando.android_base_architecture.ui.recycler_view.common.RecyclerViewType.ACTOR_ITEM;
+import static com.example.ando.android_base_architecture.ui.recycler_view.common.RecyclerViewType.EMOTICON_ITEM;
 import static com.example.ando.android_base_architecture.ui.recycler_view.common.RecyclerViewType.EMPTY_VIEW;
+import static com.example.ando.android_base_architecture.ui.recycler_view.common.RecyclerViewType.EPISODE_ITEM;
 import static com.example.ando.android_base_architecture.ui.recycler_view.common.RecyclerViewType.LINEAR_TRAY;
 import static com.example.ando.android_base_architecture.ui.recycler_view.common.RecyclerViewType.MOVIE_CAROUSEL;
 import static com.example.ando.android_base_architecture.ui.recycler_view.common.RecyclerViewType.MOVIE_POSTER_TYPE_1;
+import static com.example.ando.android_base_architecture.ui.recycler_view.common.RecyclerViewType.SHOW_ITEM;
 
 public class RecyclerUtils {
 
@@ -47,6 +51,16 @@ public class RecyclerUtils {
             case MOVIE_CAROUSEL:
                 viewHolder = new CarouselViewHolder(LayoutInflater.from(viewGroup.getContext()).
                         inflate(CarouselViewHolder.getLayout(), viewGroup, false), MOVIE_CAROUSEL);
+                break;
+
+            case SHOW_ITEM:
+                viewHolder = new ShowViewHolder(LayoutInflater.from(viewGroup.getContext()).
+                        inflate(ShowViewHolder.getLayout(), viewGroup, false), SHOW_ITEM);
+                break;
+
+            case EPISODE_ITEM:
+                viewHolder = new EpisodeViewHolder(LayoutInflater.from(viewGroup.getContext()).
+                        inflate(EpisodeViewHolder.getLayout(), viewGroup, false), EPISODE_ITEM);
                 break;
 
             default:

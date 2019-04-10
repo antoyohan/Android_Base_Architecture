@@ -7,4 +7,6 @@ public interface RecyclerViewType {
     int EMOTICON_ITEM = 3;
     int MOVIE_POSTER_TYPE_1 = 4;
     int MOVIE_CAROUSEL = 5;
+    int EPISODE_ITEM = 6;
+    int SHOW_ITEM = 7;
 }

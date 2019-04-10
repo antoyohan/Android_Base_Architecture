@@ -24,6 +24,8 @@ public class LinearTrayViewHolder extends BaseViewHolder {
         super(itemView, type);
         mHorizontalRecyclerView = itemView.findViewById(R.id.linear_tray_list);
         mTitleView = itemView.findViewById(R.id.tray_title);
+        HorizontalSpaceItemDecoration dividerItemDecoration = new HorizontalSpaceItemDecoration(10);
+        mHorizontalRecyclerView.addItemDecoration(dividerItemDecoration);
     }
 
     public static int getLayout() {
@@ -34,8 +36,6 @@ public class LinearTrayViewHolder extends BaseViewHolder {
     public void setData(BaseViewItem item) {
         // add a divider after each item for more clarity
         mTitleView.setText(item.getTitle());
-        HorizontalSpaceItemDecoration dividerItemDecoration = new HorizontalSpaceItemDecoration(10);
-        mHorizontalRecyclerView.addItemDecoration(dividerItemDecoration);
         ListRecyclerViewAdapter adapter = new ListRecyclerViewAdapter(item.getItems());
         LinearLayoutManager horizontalLayoutManager = new LinearLayoutManager(mHorizontalRecyclerView.getContext(), LinearLayoutManager.HORIZONTAL, false);
         mHorizontalRecyclerView.setLayoutManager(horizontalLayoutManager);

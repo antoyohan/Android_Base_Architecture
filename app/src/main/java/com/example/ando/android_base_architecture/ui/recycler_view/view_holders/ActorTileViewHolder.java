@@ -23,7 +23,7 @@ public class ActorTileViewHolder extends BaseViewHolder {
 
     @Override
     public void setData(BaseViewItem item) {
-        mTitle.setText(item.getmTitle());
-        mSubTitle.setText(item.getSubtitle());
+        //mTitle.setText(item.getmTitle());
+       // mSubTitle.setText(item.getSubtitle());
     }
 }

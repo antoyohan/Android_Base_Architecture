@@ -19,21 +19,22 @@
         android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="Robert Downey Jr."
         android:textColor="@color/black"
         android:textSize="15dp"
-        android:text="Robert Downey Jr."
-        app:layout_constraintStart_toEndOf="@id/image_view"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/sub_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="54 yrs"
         android:textColor="@color/light_gray"
         android:textSize="12dp"
-        app:layout_constraintStart_toEndOf="@id/image_view"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/title" />
 </android.support.constraint.ConstraintLayout>

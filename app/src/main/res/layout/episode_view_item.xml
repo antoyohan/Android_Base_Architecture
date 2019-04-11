@@ -32,6 +32,7 @@
         android:text="E09 S17"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="@+id/episode_banner"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        android:elevation="10dp"/>
 
 </android.support.constraint.ConstraintLayout>

@@ -2,10 +2,12 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/parent"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:paddingTop="@dimen/standard_tray_padding"
-    android:paddingBottom="@dimen/standard_tray_padding">
+    android:paddingBottom="@dimen/standard_tray_padding"
+    >
 
     <View
         android:id="@+id/divider"
@@ -18,10 +20,12 @@
         android:id="@+id/tray_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="@dimen/title_top_padding"
+        android:fontFamily="cursive"
         android:text="Title.."
         android:textSize="@dimen/tray_title_text"
-        android:fontFamily="cursive"
-        android:layout_marginTop="@dimen/title_top_padding"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/divider" />
 
     <android.support.v7.widget.RecyclerView

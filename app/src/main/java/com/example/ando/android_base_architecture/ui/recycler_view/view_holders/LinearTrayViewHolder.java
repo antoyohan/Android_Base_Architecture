@@ -1,8 +1,10 @@
 package com.example.ando.android_base_architecture.ui.recycler_view.view_holders;
 
 import android.support.annotation.NonNull;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.View;
 import android.widget.TextView;
 
@@ -19,11 +21,16 @@ import java.util.List;
 public class LinearTrayViewHolder extends BaseViewHolder {
     private final TextView mTitleView;
     private RecyclerView mHorizontalRecyclerView;
+    private ConstraintLayout mParent;
+    private View mBottomDivider, mTopDivider;
 
     public LinearTrayViewHolder(@NonNull View itemView, int type) {
         super(itemView, type);
         mHorizontalRecyclerView = itemView.findViewById(R.id.linear_tray_list);
         mTitleView = itemView.findViewById(R.id.tray_title);
+        mParent = itemView.findViewById(R.id.parent);
+        mTopDivider = itemView.findViewById(R.id.divider);
+        mBottomDivider = itemView.findViewById(R.id.bottom_divider);
         HorizontalSpaceItemDecoration dividerItemDecoration = new HorizontalSpaceItemDecoration(10);
         mHorizontalRecyclerView.addItemDecoration(dividerItemDecoration);
     }
@@ -37,8 +44,20 @@ public class LinearTrayViewHolder extends BaseViewHolder {
         // add a divider after each item for more clarity
         mTitleView.setText(item.getTitle());
         ListRecyclerViewAdapter adapter = new ListRecyclerViewAdapter(item.getItems());
-        LinearLayoutManager horizontalLayoutManager = new LinearLayoutManager(mHorizontalRecyclerView.getContext(), LinearLayoutManager.HORIZONTAL, false);
-        mHorizontalRecyclerView.setLayoutManager(horizontalLayoutManager);
+        if (item.getSubLayoutType() == RecyclerViewType.STAGGERED_HORIZONTAL_GRID_ITEM) {
+            StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.HORIZONTAL);
+            mHorizontalRecyclerView.setLayoutManager(layoutManager);
+
+            mTopDivider.setVisibility(View.GONE);
+            mBottomDivider.setVisibility(View.INVISIBLE);
+        } else {
+            LinearLayoutManager horizontalLayoutManager = new LinearLayoutManager(mHorizontalRecyclerView.getContext(), LinearLayoutManager.HORIZONTAL, false);
+            mHorizontalRecyclerView.setLayoutManager(horizontalLayoutManager);
+
+            mParent.setBackground(mParent.getContext().getDrawable(android.R.color.transparent));
+            mTopDivider.setVisibility(View.VISIBLE);
+            mBottomDivider.setVisibility(View.VISIBLE);
+        }
         mHorizontalRecyclerView.setAdapter(adapter);
     }
 

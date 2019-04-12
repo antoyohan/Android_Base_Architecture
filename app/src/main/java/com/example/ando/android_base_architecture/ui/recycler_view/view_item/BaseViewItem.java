@@ -1,11 +1,15 @@
 package com.example.ando.android_base_architecture.ui.recycler_view.view_item;
 
+import android.databinding.BaseObservable;
+import android.databinding.Bindable;
+
+import com.example.ando.android_base_architecture.BR;
 import com.example.ando.android_base_architecture.models.Data;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class BaseViewItem {
+public class BaseViewItem extends BaseObservable {
     @SerializedName("title")
     protected String mTitle;
     protected int mId;
@@ -17,6 +21,8 @@ public class BaseViewItem {
     protected Data mData;
     @SerializedName("items")
     protected List<BaseViewItem> mItems;
+    @SerializedName("sub_layout_type")
+    protected int mSubLayoutType;
 
     public String getmTitle() {
         return mTitle;
@@ -50,12 +56,14 @@ public class BaseViewItem {
         mViewType = viewType;
     }
 
+    @Bindable
     public String getSubtitle() {
         return mSubtitle;
     }
 
     public void setSubtitle(String subtitle) {
         mSubtitle = subtitle;
+        notifyPropertyChanged(BR.subtitle);
     }
 
     public Data getData() {
@@ -72,5 +80,13 @@ public class BaseViewItem {
 
     public void setItems(List<BaseViewItem> items) {
         mItems = items;
+    }
+
+    public int getSubLayoutType() {
+        return mSubLayoutType;
+    }
+
+    public void setSubLayoutType(int subLayoutType) {
+        mSubLayoutType = subLayoutType;
     }
 }

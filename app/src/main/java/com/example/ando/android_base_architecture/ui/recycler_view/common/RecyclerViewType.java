@@ -9,4 +9,6 @@ public interface RecyclerViewType {
     int MOVIE_CAROUSEL = 5;
     int EPISODE_ITEM = 6;
     int SHOW_ITEM = 7;
+    int STAGGERED_HORIZONTAL_GRID_ITEM = 8;
+    int SIMPLE_OPTION_ITEM = 9;
 }

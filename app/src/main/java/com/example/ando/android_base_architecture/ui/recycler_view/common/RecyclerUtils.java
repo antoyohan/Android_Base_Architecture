@@ -12,6 +12,7 @@ import com.example.ando.android_base_architecture.ui.recycler_view.view_holders.
 import com.example.ando.android_base_architecture.ui.recycler_view.view_holders.LinearTrayViewHolder;
 import com.example.ando.android_base_architecture.ui.recycler_view.view_holders.MoviePoster_Type1_Holder;
 import com.example.ando.android_base_architecture.ui.recycler_view.view_holders.ShowViewHolder;
+import com.example.ando.android_base_architecture.ui.recycler_view.view_holders.SimpleOptionViewHolder;
 
 import static com.example.ando.android_base_architecture.ui.recycler_view.common.RecyclerViewType.ACTOR_ITEM;
 import static com.example.ando.android_base_architecture.ui.recycler_view.common.RecyclerViewType.EMOTICON_ITEM;
@@ -21,6 +22,7 @@ import static com.example.ando.android_base_architecture.ui.recycler_view.common
 import static com.example.ando.android_base_architecture.ui.recycler_view.common.RecyclerViewType.MOVIE_CAROUSEL;
 import static com.example.ando.android_base_architecture.ui.recycler_view.common.RecyclerViewType.MOVIE_POSTER_TYPE_1;
 import static com.example.ando.android_base_architecture.ui.recycler_view.common.RecyclerViewType.SHOW_ITEM;
+import static com.example.ando.android_base_architecture.ui.recycler_view.common.RecyclerViewType.SIMPLE_OPTION_ITEM;
 
 public class RecyclerUtils {
 
@@ -61,6 +63,11 @@ public class RecyclerUtils {
             case EPISODE_ITEM:
                 viewHolder = new EpisodeViewHolder(LayoutInflater.from(viewGroup.getContext()).
                         inflate(EpisodeViewHolder.getLayout(), viewGroup, false), EPISODE_ITEM);
+                break;
+
+            case SIMPLE_OPTION_ITEM:
+                viewHolder = new SimpleOptionViewHolder(LayoutInflater.from(viewGroup.getContext()).
+                        inflate(SimpleOptionViewHolder.getLayout(), viewGroup, false), SIMPLE_OPTION_ITEM);
                 break;
 
             default:

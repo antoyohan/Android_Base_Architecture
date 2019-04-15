@@ -1,8 +1,11 @@
 package com.example.ando.android_base_architecture.ui.recycler_view.common;
 
+import android.databinding.DataBindingUtil;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
+import com.example.ando.android_base_architecture.R;
+import com.example.ando.android_base_architecture.databinding.ActorListItemBinding;
 import com.example.ando.android_base_architecture.ui.recycler_view.view_holders.ActorTileViewHolder;
 import com.example.ando.android_base_architecture.ui.recycler_view.view_holders.BaseViewHolder;
 import com.example.ando.android_base_architecture.ui.recycler_view.view_holders.CarouselViewHolder;
@@ -31,8 +34,12 @@ public class RecyclerUtils {
         BaseViewHolder viewHolder = null;
         switch (viewType) {
             case ACTOR_ITEM:
-                viewHolder = new ActorTileViewHolder(LayoutInflater.from(viewGroup.getContext()).
-                        inflate(ActorTileViewHolder.getLayout(), viewGroup, false), ACTOR_ITEM);
+
+                ActorListItemBinding binding = DataBindingUtil.inflate(
+                        LayoutInflater.from(viewGroup.getContext()),
+                        R.layout.actor_list_item, viewGroup, false);
+                viewHolder = new ActorTileViewHolder(binding, ACTOR_ITEM);
+
                 break;
 
             case EMOTICON_ITEM:

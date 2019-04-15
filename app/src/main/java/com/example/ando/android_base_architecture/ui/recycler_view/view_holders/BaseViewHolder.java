@@ -1,5 +1,6 @@
 package com.example.ando.android_base_architecture.ui.recycler_view.view_holders;
 
+import android.databinding.ViewDataBinding;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -16,6 +17,10 @@ public abstract class BaseViewHolder extends RecyclerView.ViewHolder {
     public BaseViewHolder(@NonNull View itemView, int type) {
         super(itemView);
         mType = type;
+    }
+
+    public BaseViewHolder(ViewDataBinding dataBinding, int type) {
+        super(dataBinding.getRoot());
     }
 
     public int getType() {

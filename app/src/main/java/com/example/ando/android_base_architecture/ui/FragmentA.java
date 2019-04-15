@@ -4,6 +4,7 @@ import android.arch.lifecycle.ViewModelProvider;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.databinding.DataBindingUtil;
+import android.databinding.ViewDataBinding;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -12,7 +13,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.ando.android_base_architecture.R;
-import com.example.ando.android_base_architecture.databinding.FragmentALayoutBinding;
 import com.example.ando.android_base_architecture.network.ApiService;
 import com.example.ando.android_base_architecture.viewmodel.HomeViewModel;
 
@@ -49,9 +49,9 @@ public class FragmentA extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        FragmentALayoutBinding layoutBinding =
+        ViewDataBinding layoutBinding =
                 DataBindingUtil.inflate(getLayoutInflater(), R.layout.fragment_a_layout, container, false);
-        layoutBinding.setHomeViewModel(mViewModel);
+        layoutBinding.setVariable(com.example.ando.android_base_architecture.BR.HomeViewModel , mViewModel);
         return layoutBinding.getRoot();
     }
 

@@ -4,6 +4,7 @@ import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.Observer;
 import android.arch.paging.LivePagedListBuilder;
 import android.arch.paging.PagedList;
+import android.content.Context;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.os.Handler;
@@ -26,6 +27,8 @@ import com.example.ando.android_base_architecture.ui.recycler_view.view_item.Bas
 import com.facebook.shimmer.ShimmerFrameLayout;
 
 import javax.inject.Inject;
+
+import dagger.android.support.AndroidSupportInjection;
 
 public class Fragment_Recycler extends Fragment {
     private static String TAG = Fragment_Recycler.class.getSimpleName();
@@ -94,4 +97,11 @@ public class Fragment_Recycler extends Fragment {
             hideShimmerEffect();
         });
     }
+
+    @Override
+    public void onAttach(Context context) {
+        AndroidSupportInjection.inject(this);
+        super.onAttach(context);
+    }
+
 }
